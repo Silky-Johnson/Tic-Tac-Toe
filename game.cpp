@@ -280,18 +280,22 @@ string runGame(GameBoard& board, char& first, char& second, bool isPlayerFirst) 
          }
          
          board.setSpot(firstSpot, first);
+         rounds++;
+
+         board.printBoard();
 
          printf("Now the Opponent will choose a spot\n\n");
          secondSpot = board.findBestMove();
 
          printf("Opponent has chosen X: %d, Y: %d as their spot.\n\n", secondSpot.x, secondSpot.y);
          board.setSpot(secondSpot, second);
+         rounds++;
       } else if (!isPlayerFirst) {
          printf("The Opponent will choose their spot first.\n\n");
          firstSpot = board.findBestMove();
          printf("The Opponent has chosen X: %d, Y: %d as their spot.\n\n", firstSpot.x, firstSpot.y);
          board.setSpot(firstSpot, first);
-
+         rounds++;
          board.printBoard();
 
          cout << "Now it is your turn." << endl;
@@ -303,6 +307,7 @@ string runGame(GameBoard& board, char& first, char& second, bool isPlayerFirst) 
          }
 
          board.setSpot(secondSpot, second);
+         rounds++;
       }
   
       board.printBoard();
@@ -312,8 +317,6 @@ string runGame(GameBoard& board, char& first, char& second, bool isPlayerFirst) 
       } else if (board.eval() == -10) {
          return "O Wins!\n";
       }
-
-      rounds++;
    }
 
    return "Draw!\n";
